@@ -31,12 +31,14 @@ appyFilter();
 }
 
 const filterCategory = (e)=>{
+   console.log(category);
   if(category.includes(e.target.value)){
     setCategory(prev => prev.filter((item) =>item!=e.target.value) )
   }
   else{
     setCategory(prev=>[...prev, e.target.value]);
   }
+  console.log(category);
 }
 
 const filterSubCategory =(e)=>{
@@ -87,13 +89,13 @@ useEffect(()=>{
           <p className='text-2xl capitalize'>categories</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
            <p className='flex gap-2 capitalize cursor-pointer items-center'>
-             <input type="checkbox" name="men" value={"Men"} className=' w-3 ' onChange={filterCategory} /> Men
+             <input type="checkbox" name="men" value={"men"} className=' w-3 ' onChange={filterCategory} /> Men
            </p>
             <p className='flex gap-2 capitalize cursor-pointer items-center'>
-             <input type="checkbox" name="men" value={"Women"} className=' w-3 ' onChange={filterCategory} /> Women
+             <input type="checkbox" name="men" value={"women"} className=' w-3 ' onChange={filterCategory} /> Women
            </p>
             <p className='flex gap-2 capitalize cursor-pointer items-center'>
-             <input type="checkbox" name="men" value={"Kids"} className=' w-3 ' onChange={filterCategory} /> Kids
+             <input type="checkbox" name="men" value={"kids"} className=' w-3 ' onChange={filterCategory} /> Kids
            </p>
           </div>
         </div>
@@ -133,7 +135,7 @@ useEffect(()=>{
         {/* products  */}
         <div className='grid grid-cols-2  lg:grid-cols-4 md:gap-4 gap-1 md:gap-y-4'>
           {filterProducts.map((product,index)=>(
-            <div className='md-h-50'>
+            <div className='md-h-50' key={index}>
               <ProductItem   key={index} id={product._id} name={product.name} price={product.price} image={product.images} />
             </div>
           ))}
